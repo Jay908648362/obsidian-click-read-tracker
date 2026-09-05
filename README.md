@@ -46,7 +46,7 @@ Obsidian 原生不记录「你点开过哪个笔记」，于是这两者被混�
 **方式一：BRAT（推荐，免手动更新）**
 1. 安装 [BRAT](https://github.com/TfTHacker/obsidian42-brat) 插件
 2. 命令面板 → `BRAT: Add a beta plugin`
-3. 粘贴仓库地址：`你的用户名/obsidian-click-read-tracker`
+3. 粘贴仓库地址：`Jay908648362/obsidian-click-read-tracker`
 4. 启用 **Click Read Tracker**，重启 Obsidian
 
 **方式二：手动下载**
@@ -56,7 +56,7 @@ Obsidian 原生不记录「你点开过哪个笔记」，于是这两者被混�
 
 **方式三：源码**
 ```bash
-git clone https://github.com/你的用户名/obsidian-click-read-tracker.git
+git clone https://github.com/Jay908648362/obsidian-click-read-tracker.git
 # 复制到库的插件目录后启用
 ```
 

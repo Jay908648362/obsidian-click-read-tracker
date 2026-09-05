@@ -1,0 +1,9 @@
+{
+  "id": "click-read-tracker",
+  "name": "Click Read Tracker",
+  "version": "1.4.0",
+  "minAppVersion": "1.1.0",
+  "description": "追踪你点开/看过哪些笔记，把「读过」状态存于插件自身数据并注入 data-read 属性（绝不写 frontmatter），配合 review-status.css 在链接/文件管理器显示「看过」标识。",
+  "author": "AI秘籍",
+  "isDesktopOnly": false
+}

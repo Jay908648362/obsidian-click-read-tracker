@@ -1,0 +1,54 @@
+/* =========================================================================
+ * styles.css — Click Read Tracker 插件样式
+ * Obsidian 会自动加载此文件，安装插件即生效，无需手动开启 CSS 片段。
+ *
+ * 唯一 YAML 字段：reviewed（审核标识，true=通过 / false=未审）
+ * 状态来源：插件自读目标笔记 reviewed 注入 data-reviewed，自记打开注入 data-read。
+ *           插件自己完成属性注入，不依赖 Supercharged Links 等任何配置。
+ * ========================================================================= */
+
+/* ---------- 1. 正文内部链接 [[笔记]] 前缀图标（按目标笔记 reviewed） ---------- */
+a.internal-link[data-reviewed="false"]::before{
+  content:"🔴 未审 ";
+  color:#f14c4c; font-size:.78em; font-weight:600;
+}
+a.internal-link[data-reviewed="false"]{ color:#f0887c; }
+
+a.internal-link[data-reviewed="true"]::before{
+  content:"✅ 已审 ";
+  color:#3fb950; font-size:.78em; font-weight:600;
+}
+a.internal-link[data-reviewed="true"]{ color:#7ee0a0; }
+
+/* ---------- 2. 文件管理器（左栏）笔记级状态 ---------- */
+.nav-file-title[data-reviewed="false"]::after{
+  content:" ●"; color:#f14c4c; font-weight:700;
+}
+.nav-file-title[data-reviewed="true"]{ opacity:.55; }
+.nav-file-title[data-reviewed="true"]::after{
+  content:" ✓"; color:#3fb950; font-weight:700;
+}
+
+/* ---------- 3. 反向链接 / 出链面板 同步 ---------- */
+.workspace-leaf .internal-link[data-reviewed="false"]::before{ content:"🔴 "; color:#f14c4c; }
+.workspace-leaf .internal-link[data-reviewed="true"]::before{ content:"✅ "; color:#3fb950; }
+
+/* ---------- 4. 「读过」标记（由插件注入 data-read，不污染 YAML） ---------- */
+/* 未审但已点开看过 → 黄色提示，区分「没看 / 看过不通过」 */
+a.internal-link[data-read="true"][data-reviewed="false"]::before{
+  content:"🟡 看过 "; color:#e3b341; font-size:.76em; font-weight:600;
+}
+.nav-file-title[data-read="true"][data-reviewed="false"]::after{
+  content:" ◔"; color:#e3b341; font-weight:700;
+}
+
+/* ---------- 5. 断链标记（指向 .md 却解析不到目标笔记的 Markdown 链接） ---------- */
+/* 由插件注入 data-missing；让「写了链接却没建笔记」的断链一眼可见 */
+a.internal-link[data-missing="true"]::before,
+a.external-link[data-missing="true"]::before{
+  content:"⚠ 缺失 "; color:#d97706; font-size:.76em; font-weight:600;
+}
+a.internal-link[data-missing="true"],
+a.external-link[data-missing="true"]{
+  color:#d97706; text-decoration:underline dotted #d97706;
+}
